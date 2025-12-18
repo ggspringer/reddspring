@@ -147,13 +147,21 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 /* ===================================
    Background Effects
    =================================== */
 
 .bg-gradient {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
     background: 
         radial-gradient(ellipse 80% 50% at 50% -20%, rgba(179, 58, 58, 0.12), transparent),
         radial-gradient(ellipse 60% 40% at 100% 0%, rgba(179, 58, 58, 0.08), transparent),
@@ -171,7 +179,11 @@ body {
 
 .bg-grid {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
     background-image: 
         linear-gradient(var(--border-secondary) 1px, transparent 1px),
         linear-gradient(90deg, var(--border-secondary) 1px, transparent 1px);
@@ -184,7 +196,11 @@ body {
 /* Floating Orbs */
 .floating-orbs {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
     pointer-events: none;
     z-index: -1;
     overflow: hidden;
@@ -199,8 +215,8 @@ body {
 }
 
 .orb-1 {
-    width: 400px;
-    height: 400px;
+    width: min(400px, 80vw);
+    height: min(400px, 80vw);
     background: var(--brand-red);
     top: -100px;
     right: -100px;
@@ -208,8 +224,8 @@ body {
 }
 
 .orb-2 {
-    width: 300px;
-    height: 300px;
+    width: min(300px, 60vw);
+    height: min(300px, 60vw);
     background: var(--brand-red-light);
     bottom: 20%;
     left: -50px;
@@ -217,8 +233,8 @@ body {
 }
 
 .orb-3 {
-    width: 250px;
-    height: 250px;
+    width: min(250px, 50vw);
+    height: min(250px, 50vw);
     background: var(--brand-red-dark);
     bottom: -50px;
     right: 20%;
@@ -667,6 +683,7 @@ body {
     box-shadow: var(--shadow-xl), var(--shadow-glow);
     transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
     transition: transform 0.5s var(--ease-out-expo);
+    max-width: 100%;
 }
 
 .code-window:hover {
@@ -706,6 +723,7 @@ body {
 .code-content {
     padding: var(--space-lg);
     overflow-x: auto;
+    max-width: 100%;
 }
 
 .code-content pre {
@@ -1116,6 +1134,7 @@ body {
     position: relative;
     background: var(--bg-secondary);
     overflow: hidden;
+    overflow-x: clip;
 }
 
 .cta::before {
@@ -1133,8 +1152,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
+    width: min(600px, 100vw);
+    height: min(600px, 100vw);
     background: radial-gradient(circle, rgba(179, 58, 58, 0.15) 0%, transparent 60%);
     pointer-events: none;
 }
@@ -1390,14 +1409,15 @@ body {
         padding-left: var(--space-md);
     }
     
-    .timeline-line {
-        left: 20px;
+    .approach-step {
+        gap: var(--space-md);
     }
     
     .step-number {
-        width: 60px;
-        height: 60px;
-        font-size: var(--text-xl);
+        width: 48px;
+        height: 48px;
+        font-size: var(--text-base);
+        flex-shrink: 0;
     }
     
     .footer-links {
@@ -1409,6 +1429,11 @@ body {
         flex-direction: column;
         gap: var(--space-md);
         text-align: center;
+    }
+    
+    .tech-stack .section-container {
+        padding-left: 0;
+        padding-right: 0;
     }
 }
 
@@ -1424,17 +1449,42 @@ body {
     .approach-step {
         flex-direction: column;
         gap: var(--space-md);
-        padding-left: var(--space-3xl);
+        padding-left: 0;
     }
     
-    .timeline-line {
-        left: 10px;
+    .approach-timeline {
+        padding-left: 0;
     }
     
     .step-number {
         width: 50px;
         height: 50px;
         font-size: var(--text-lg);
+    }
+    
+    .step-number::after {
+        display: none;
+    }
+    
+    .code-content {
+        padding: var(--space-md);
+    }
+    
+    .code-content pre {
+        font-size: var(--text-xs);
+    }
+    
+    .navbar {
+        padding: var(--space-md);
+    }
+    
+    .hero-visual {
+        margin: 0 calc(-1 * var(--space-md));
+        width: calc(100% + var(--space-md) * 2);
+    }
+    
+    .code-window {
+        border-radius: 0;
     }
 }
 
